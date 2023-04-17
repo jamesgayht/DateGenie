@@ -27,7 +27,7 @@ public class tihRestaurantService {
     private String apiKey;
 
     public List<Restaurant> searchRestaurants(String keyword, Integer offset) {
-        return searchRestaurants(keyword, 10, offset);
+        return searchRestaurants(keyword, 9, offset);
     }
 
     public List<Restaurant> searchRestaurants(String searchValues, Integer limit, Integer offset) {

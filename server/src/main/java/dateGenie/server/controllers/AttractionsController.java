@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import dateGenie.server.models.Attraction;
 import dateGenie.server.models.AttractionsResult;
@@ -25,9 +25,9 @@ public class AttractionsController {
     @Autowired
     private TIHAttractionsService tihAttractionsService;
 
-    @GetMapping
-    public ResponseEntity<String> searchAttractions (@RequestParam String searchValues) {
-        List<Attraction> attractions = tihAttractionsService.searchAttractions(searchValues, 10);
+    @GetMapping(path = "/{keyword}")
+    public ResponseEntity<String> searchAttractions (@PathVariable String keyword) {
+        List<Attraction> attractions = tihAttractionsService.searchAttractions(keyword, 10);
 
         for (Attraction attraction : attractions) {
             attraction.setImageUrl(tihImageService.searchAttractionImage(attraction.getImageUUID(), attraction));

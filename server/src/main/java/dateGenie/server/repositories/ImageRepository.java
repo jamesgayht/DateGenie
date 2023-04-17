@@ -1,8 +1,6 @@
 package dateGenie.server.repositories;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,7 +42,7 @@ public class ImageRepository {
 		}
 
 		String imageUrl = "https://%s.%s/%s"
-				.formatted(spacesBucket, spacesEndpointUrl, attraction.getUuid());
+				.formatted(spacesBucket, spacesEndpointUrl, attraction.getName());
 		attraction.setImageUrl(imageUrl);
 
         System.out.println("image URL >>> " + imageUrl);
@@ -56,7 +54,7 @@ public class ImageRepository {
 
 		try {
 			PutObjectRequest putReq = new PutObjectRequest(spacesBucket
-					, restaurant.getUuid(), image);
+					, restaurant.getName(), image);
 			putReq.withCannedAcl(CannedAccessControlList.PublicRead);
 			s3.putObject(putReq);
 		} catch (Exception ex) {
@@ -65,7 +63,7 @@ public class ImageRepository {
 		}
 
 		String imageUrl = "https://%s.%s/%s"
-				.formatted(spacesBucket, spacesEndpointUrl, restaurant.getUuid());
+				.formatted(spacesBucket, spacesEndpointUrl, restaurant.getName());
 		restaurant.setImageUrl(imageUrl);
 
         System.out.println("image URL >>> " + imageUrl);

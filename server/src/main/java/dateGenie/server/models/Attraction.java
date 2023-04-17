@@ -38,6 +38,8 @@ public class Attraction {
                 .add("imageUUID", imageUUID)
                 .add("imageURL", imageUrl)
                 .add("reviews", arrayBuilder)
+                .add("latitude", latitude)
+                .add("longitude", longitude)
                 .build();
     }
 
