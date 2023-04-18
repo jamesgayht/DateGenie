@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import dateGenie.server.models.Attraction;
+import dateGenie.server.models.AttractionsResult;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
@@ -27,11 +28,11 @@ public class TIHAttractionsService {
     @Value("${TIH_API_KEY}")
     private String apiKey;
 
-    public List<Attraction> searchAttractions(String keyword, Integer offset) {
-        return searchAttractions(keyword, 10, offset);
+    public AttractionsResult searchAttractions(String keyword, Integer offset) {
+        return searchAttractions(keyword, 8, offset);
     }
 
-    public List<Attraction> searchAttractions(String searchValues, Integer limit, Integer offset) {
+    public AttractionsResult searchAttractions(String searchValues, Integer limit, Integer offset) {
 
         // https://api.stb.gov.sg/content/attractions/v2/search
         // searchType="keyword" searchValues="???" limit=10 offset=???
@@ -59,6 +60,8 @@ public class TIHAttractionsService {
         // { data: [ { } ] }
         JsonObject result = reader.readObject();
         JsonArray data = result.getJsonArray("data");
+        Integer totalRecords = result.getInt("totalRecords"); 
+        System.out.println("totalRecords >>> " + totalRecords);
 
         List<Attraction> attractions = new LinkedList<>();
         attractions = data.stream()
@@ -66,7 +69,10 @@ public class TIHAttractionsService {
                         .map(jo -> Attraction.createAttraction(jo))
                         .toList();
 
-        return attractions;
+        AttractionsResult attractionsResult = AttractionsResult.createAttractionsResult(attractions);
+        attractionsResult.setTotalRecords(totalRecords);
+        
+        return attractionsResult;
     }
 
 

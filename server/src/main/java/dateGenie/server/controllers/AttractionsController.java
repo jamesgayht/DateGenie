@@ -3,8 +3,11 @@ package dateGenie.server.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +20,9 @@ import jakarta.json.JsonObject;
 
 @Controller
 @RequestMapping(path = "/api/attractions")
+@CrossOrigin(origins = "*")
 public class AttractionsController {
-    
+
     @Autowired
     private TIHImageService tihImageService;
 
@@ -26,17 +30,17 @@ public class AttractionsController {
     private TIHAttractionsService tihAttractionsService;
 
     @GetMapping(path = "/{keyword}")
-    public ResponseEntity<String> searchAttractions (@PathVariable String keyword) {
-        List<Attraction> attractions = tihAttractionsService.searchAttractions(keyword, 10);
+    public ResponseEntity<String> searchAttractions(@PathVariable String keyword) {
+        AttractionsResult attractionResults = tihAttractionsService.searchAttractions(keyword, 0);
 
-        for (Attraction attraction : attractions) {
+        for (Attraction attraction : attractionResults.getAttractions()) {
             attraction.setImageUrl(tihImageService.searchAttractionImage(attraction.getImageUUID(), attraction));
         }
 
-        AttractionsResult attractionResults = AttractionsResult.createAttractionsResult(attractions);
-
         JsonObject results = attractionResults.toJson();
-        
-        return ResponseEntity.ok(results.toString());
+
+        return ResponseEntity.status(HttpStatus.OK)
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(results.toString());
     }
 }

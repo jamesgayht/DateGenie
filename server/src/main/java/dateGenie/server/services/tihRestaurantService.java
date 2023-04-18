@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import dateGenie.server.models.Restaurant;
+import dateGenie.server.models.RestaurantResults;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
@@ -26,11 +27,11 @@ public class tihRestaurantService {
     @Value("${TIH_API_KEY}")
     private String apiKey;
 
-    public List<Restaurant> searchRestaurants(String keyword, Integer offset) {
-        return searchRestaurants(keyword, 9, offset);
+    public RestaurantResults searchRestaurants(String keyword, Integer offset) {
+        return searchRestaurants(keyword, 8, offset);
     }
 
-    public List<Restaurant> searchRestaurants(String searchValues, Integer limit, Integer offset) {
+    public RestaurantResults searchRestaurants(String searchValues, Integer limit, Integer offset) {
 
         // https://api.stb.gov.sg/content/food-beverages/v2/search
         // searchType="keyword" searchValues="???" limit=10 offset=???
@@ -58,6 +59,8 @@ public class tihRestaurantService {
         // { data: [ { } ] }
         JsonObject result = reader.readObject();
         JsonArray data = result.getJsonArray("data");
+        Integer totalRecords = result.getInt("totalRecords"); 
+        System.out.println("totalRecords >>> " + totalRecords);
 
         List<Restaurant> restaurants = new LinkedList<>();
         restaurants = data.stream()
@@ -65,6 +68,9 @@ public class tihRestaurantService {
                         .map(jo -> Restaurant.createRestaurant(jo))
                         .toList();
 
-        return restaurants;
+        RestaurantResults restaurantResults = RestaurantResults.createRestaurantResults(restaurants); 
+        restaurantResults.setTotalRecords(totalRecords);
+
+        return restaurantResults;
     }
 }

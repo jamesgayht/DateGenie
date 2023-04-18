@@ -32,13 +32,11 @@ public class RestaurantController {
     @GetMapping(path = "/{keyword}")
     public ResponseEntity<String> searchRestaurants(@PathVariable String keyword) {
 
-        List<Restaurant> restaurants = tihRestaurantService.searchRestaurants(keyword, 10);
+        RestaurantResults restaurantResults = tihRestaurantService.searchRestaurants(keyword, 0);
 
-        for (Restaurant res : restaurants) {
+        for (Restaurant res : restaurantResults.getRestaurants()) {
             res.setImageUrl(tihImageService.searchRestaurantImage(res.getImageUUID(), res));
         }
-
-        RestaurantResults restaurantResults = RestaurantResults.createRestaurantResults(restaurants);
 
         JsonObject results = restaurantResults.toJson();
 
