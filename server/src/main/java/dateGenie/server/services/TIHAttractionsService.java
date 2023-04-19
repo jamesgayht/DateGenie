@@ -33,7 +33,7 @@ public class TIHAttractionsService {
     }
 
     public AttractionsResult searchAttractions(String searchValues, Integer limit, Integer offset) {
-
+        if(offset < 0) offset = 0; 
         // https://api.stb.gov.sg/content/attractions/v2/search
         // searchType="keyword" searchValues="???" limit=10 offset=???
         String url = UriComponentsBuilder.fromUriString(URL_RESTAURANT)

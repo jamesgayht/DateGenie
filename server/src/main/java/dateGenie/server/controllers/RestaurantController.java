@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import dateGenie.server.models.Restaurant;
 import dateGenie.server.models.RestaurantResults;
@@ -30,9 +31,9 @@ public class RestaurantController {
     private TIHImageService tihImageService;
 
     @GetMapping(path = "/{keyword}")
-    public ResponseEntity<String> searchRestaurants(@PathVariable String keyword) {
+    public ResponseEntity<String> searchRestaurants(@RequestParam String keyword, int offset) {
 
-        RestaurantResults restaurantResults = tihRestaurantService.searchRestaurants(keyword, 0);
+        RestaurantResults restaurantResults = tihRestaurantService.searchRestaurants(keyword, offset);
 
         for (Restaurant res : restaurantResults.getRestaurants()) {
             res.setImageUrl(tihImageService.searchRestaurantImage(res.getImageUUID(), res));
