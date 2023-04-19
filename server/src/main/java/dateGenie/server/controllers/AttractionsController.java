@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import dateGenie.server.models.Attraction;
 import dateGenie.server.models.AttractionsResult;
@@ -31,8 +30,8 @@ public class AttractionsController {
     private TIHAttractionsService tihAttractionsService;
 
     @GetMapping(path = "/{keyword}")
-    public ResponseEntity<String> searchAttractions(@RequestParam String keyword, int offset) {
-        AttractionsResult attractionResults = tihAttractionsService.searchAttractions(keyword, offset);
+    public ResponseEntity<String> searchAttractions(@PathVariable String keyword) {
+        AttractionsResult attractionResults = tihAttractionsService.searchAttractions(keyword, 0);
 
         for (Attraction attraction : attractionResults.getAttractions()) {
             attraction.setImageUrl(tihImageService.searchAttractionImage(attraction.getImageUUID(), attraction));

@@ -9,7 +9,6 @@ import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 
 public class Attraction {
-    private Integer id;
     private String uuid;
     private String name;
     private String type;
@@ -89,14 +88,6 @@ public class Attraction {
     public String toString() {
         return "Attraction {uuid=%s, name=%s, type=%s, description=%s, imageUUID=%s, pricing=%s, reviews=%s, latitude=%f, longtitude=%f}"
                 .formatted(uuid, name, type, description, imageUUID, pricing, reviews.toString(), latitude, longitude);
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getUuid() {
