@@ -21,6 +21,33 @@ public class Restaurant {
     private String imageUrl;
     private String pricing; 
 
+    public static Restaurant createRestaurantFromClientPayload(JsonObject doc) {
+        Restaurant restaurant = new Restaurant(); 
+
+        restaurant.setUuid(doc.getString("restaurant_uuid"));
+        restaurant.setName(doc.getString("name"));
+        restaurant.setType(doc.getString("type"));
+        restaurant.setDescription(doc.getString("description"));
+        restaurant.setCuisine(doc.getString("cuisine"));
+        restaurant.setPricing(doc.getString("pricing"));
+        restaurant.setImageUUID(doc.getString("image_uuid"));
+        restaurant.setImageUrl(doc.getString("image_url"));
+
+        JsonArray reviewsArray = doc.getJsonArray("reviews");
+        List<Review> reviews = new LinkedList<>();
+        reviews = reviewsArray.stream()
+                .map(v -> (JsonObject) v)
+                .map(jo -> Review.createReview(jo))
+                .toList();
+
+        restaurant.setReviews(reviews);
+        
+        restaurant.setLatitude(doc.getJsonNumber("latitude").doubleValue());
+        restaurant.setLongitude(doc.getJsonNumber("longitude").doubleValue());
+
+        return restaurant; 
+    }
+
     public JsonObject toJson() {
 
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
@@ -62,7 +89,7 @@ public class Restaurant {
             restaurant.setImageUUID(imageObj.getString("uuid"));
         }
         else {
-            restaurant.setImageUUID("no image listed");
+            restaurant.setImageUUID("No image listed");
         }
 
         restaurant.setCuisine(doc.getString("cuisine").trim().length() > 0 ? doc.getString("cuisine") : "No cuisine listed");

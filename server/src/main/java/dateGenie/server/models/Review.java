@@ -11,10 +11,10 @@ public class Review {
 
     public JsonObject toJson() {
         return Json.createObjectBuilder()
-                .add("name", authorName)
+                .add("authorName", authorName)
                 .add("rating", rating)
                 .add("text", text)
-                .add("date", date)
+                .add("time", date)
                 .build();
     }
     

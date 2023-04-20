@@ -1,15 +1,16 @@
-drop database if exists dategenie; 
+/* drop database if exists dategenie;  */
+use railway;
 drop table if exists users; 
-drop table if exists restaurants; 
 drop table if exists restaurant_reviews; 
-drop table if exists attractions; 
+drop table if exists restaurants; 
 drop table if exists attraction_reviews; 
+drop table if exists attractions; 
 
-create database dategenie; 
-use dategenie; 
+/* create database dategenie;  */
+/* use dategenie;  */
 
 create table users (
-    customer_id int auto_increment primary key, 
+    user_id int auto_increment primary key, 
     username varchar(32) not null, 
     email varchar(128) not null,
     password varchar(128) not null
@@ -21,15 +22,15 @@ VALUES
 
 create table restaurants (
     restaurant_uuid varchar(128) primary key,
-    name varchar(128) not null, 
-    type varchar(128) not null, 
+    restaurant_name varchar(128) not null, 
+    type varchar(128) not null,
     description text not null, 
     image_uuid varchar(128) not null, 
     cuisine varchar(128) not null, 
     latitude DOUBLE not null, 
     longitude DOUBLE not null, 
     image_url varchar(256) not null, 
-    pricing varchar(128) not null
+    pricing varchar(128) not null    
 );
 
 create table restaurant_reviews (
@@ -44,7 +45,7 @@ create table restaurant_reviews (
 
 create table attractions (
     attraction_uuid varchar(128) primary key,
-    name varchar(128) not null, 
+    attraction_name varchar(128) not null, 
     type varchar(128) not null, 
     description text not null, 
     image_uuid varchar(128) not null, 

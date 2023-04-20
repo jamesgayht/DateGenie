@@ -22,7 +22,7 @@ public class TIHImageService {
     @Autowired
     private ImageRepository imageRepo; 
 
-    static String FILEPATH = "/Users/jumo/Downloads/NUS_VTTP/dateGenie/server/src/main/resources/static/restaurant-image.jpg";
+    static String FILEPATH = "/Users/jumo/Downloads/NUS_VTTP/dateGenie/server/src/main/resources/static/image.jpg";
     static File file = new File(FILEPATH);
 
     

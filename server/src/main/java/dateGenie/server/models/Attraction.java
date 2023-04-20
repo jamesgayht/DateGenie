@@ -20,6 +20,32 @@ public class Attraction {
     private String imageUrl;
     private String pricing;
 
+    public static Attraction createAttractionFromClientPayload(JsonObject doc) {
+        Attraction attraction = new Attraction(); 
+
+        attraction.setUuid(doc.getString("attraction_uuid"));
+        attraction.setName(doc.getString("name"));
+        attraction.setType(doc.getString("type"));
+        attraction.setDescription(doc.getString("description"));
+        attraction.setPricing(doc.getString("pricing"));
+        attraction.setImageUUID(doc.getString("image_uuid"));
+        attraction.setImageUrl(doc.getString("image_url"));
+
+        JsonArray reviewsArray = doc.getJsonArray("reviews");
+        List<Review> reviews = new LinkedList<>();
+        reviews = reviewsArray.stream()
+                .map(v -> (JsonObject) v)
+                .map(jo -> Review.createReview(jo))
+                .toList();
+
+        attraction.setReviews(reviews);
+        
+        attraction.setLatitude(doc.getJsonNumber("latitude").doubleValue());
+        attraction.setLongitude(doc.getJsonNumber("longitude").doubleValue());
+
+        return attraction; 
+    }
+
     public JsonObject toJson() {
 
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
