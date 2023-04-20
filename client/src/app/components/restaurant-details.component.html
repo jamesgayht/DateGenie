@@ -1,0 +1,81 @@
+<div id="empty-wrapper" *ngIf="isLoading">
+  <div class="screen">
+      <div class="screen-image"></div>
+      <div class="screen-overlay"></div>
+      <div class="screen-content">
+          <div class="loading-screen">
+              <div class="spinner"></div>
+          </div>
+          <div class="screen-user">
+              <span class="name">DATEGENIE</span>
+              <!-- <a class="link" href="" target="_blank">@JG</a> -->
+          </div>
+
+      </div>
+  </div>
+</div>
+
+<div id=wrapper *ngIf="!isLoading">
+
+  <div>
+    <div class="top-section">
+      <div class="gmaps">
+        <iframe width="450" height="250" frameborder="0" style="border:0" referrerpolicy="no-referrer-when-downgrade"
+          [src]="sanitizer.bypassSecurityTrustResourceUrl(this.gmapURL)" allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="restaurant-details-table">
+        <span>{{restaurant.name}}</span>
+        <br>
+        <span>{{restaurant.type}}</span>
+        <br>
+        <span>{{restaurant.cuisine}}</span>
+        <br>
+        <span>{{restaurant.pricing}}</span>
+        <br>
+        <span>{{restaurant.description}}</span>
+        <br>
+      </div>
+    </div>
+
+    <div class="bottom-section">
+      <table class="reviews-table" *ngFor="let review of reviews">
+        <tr>
+          <td>Name:</td>
+          <td>{{review.authorName}}</td>
+        </tr>
+
+        <tr>
+          <td>Rating:</td>
+          <td>{{review.rating}}</td>
+        </tr>
+
+        <tr>
+          <td>Date:</td>
+          <td>{{review.time}}</td>
+        </tr>
+
+        <tr>
+          <td>Text:</td>
+          <td>{{review.text}}</td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+  <div class="screen">
+    <div class="screen-image"></div>
+    <div class="screen-overlay"></div>
+    <div class="screen-content">
+
+      <div class="screen-user">
+        <span class="name">DATEGENIE</span>
+        <!-- <a class="link" href="" target="_blank">@JG</a> -->
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,77 @@
+<div id="empty-wrapper" *ngIf="!attractions.length">
+    <div class="screen">
+        <div class="screen-image"></div>
+        <div class="screen-overlay"></div>
+        <div class="screen-content">
+            <div class="loading-screen">
+                <div class="spinner"></div>
+            </div>
+            <div class="screen-user">
+                <span class="name">DATEGENIE</span>
+                <!-- <a class="link" href="" target="_blank">@JG</a> -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id=wrapper [hidden]="!attractions.length">
+
+    <div class="screen">
+        <div class="screen-image"></div>
+        <div class="screen-overlay"></div>
+        <div class="screen-content">
+
+            <div class="screen-user">
+                <span class="name">DATEGENIE</span>
+                <!-- <a class="link" href="" target="_blank">@JG</a> -->
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form">
+        <form [formGroup]="form" (ngSubmit)="searchAttractions()">
+            <table>
+                <tr>
+                    <td class="input-header">Search Attractions:</td>
+                    <td><input class="text-input" type="text" required placeholder="{{keyword}}" formControlName="keyword">
+                    </td>
+                    <td><button id="search-button" type="submit" [disabled]="form.invalid">Search</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <mat-paginator #paginator [length]="totalRecords" [pageSize]="8" [pageSizeOptions]="[8]" (page)="getPageDetails($event)" aria-label="Select page">
+    </mat-paginator>
+
+    <div *ngIf="attractions.length !== 0" class="card-container">
+        <mat-card class="attraction-card card" *ngFor="let attraction of attractions">
+            <mat-card-header class="attraction-header-image card-header">
+                <mat-icon mat-card-avatar>beach_access</mat-icon>
+                <mat-card-title>{{attraction.type}}</mat-card-title>
+                <!-- <mat-card-subtitle>global flavors, local flair</mat-card-subtitle> -->
+            </mat-card-header>
+            <img class="card-img" *ngIf='attraction.imageURL !== "No Image Found"' mat-card-image [src]=attraction.imageURL
+                onError="this.src='../../assets/images/No-Image-Placeholder.svg'">
+
+            <img class="card-img" *ngIf='attraction.imageURL === "No Image Found"' mat-card-image
+                src="../../assets/images/No-Image-Placeholder.svg">
+
+            <mat-card-content>
+                <p class="card-body">
+                    {{attraction.name}}
+                    <br>
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button [routerLink]="['/attractions/details', attraction.name]">More Details</button>
+                <button class="favourite-button" mat-icon-button matTooltip="Basic" (click)="addToFavourites(attraction)">
+                    <mat-icon id="favourite-icon">favorite</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+</div>

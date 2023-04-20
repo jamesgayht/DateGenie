@@ -1,0 +1,18 @@
+.toolbar {
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
+  font-family: "Source Code Pro", monospace;
+  font-weight: bolder;
+}
+
+#logo {
+  cursor: pointer;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar-components {
+  padding-left: 20px;
+}

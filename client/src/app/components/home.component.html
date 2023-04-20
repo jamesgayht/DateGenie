@@ -1,0 +1,83 @@
+<div id="wrapper">
+
+    <div class="card-container">
+        <div class="home-card">
+            <mat-card class="restaurant-card card">
+                <mat-card-header class="restaurant-header-image card-header">
+                    <mat-icon mat-card-avatar> restaurant_menu</mat-icon>
+                    <mat-card-title>Restaurants</mat-card-title>
+                    <!-- <mat-card-subtitle>global flavors, local flair</mat-card-subtitle> -->
+                </mat-card-header>
+                <img mat-card-image src="../../assets/images/chicken-rice.jpg" alt="Photo of steamed chicken rice">
+                <mat-card-content>
+                    <p class="card-body">
+                        Craving for something new? <br> Unleash your taste buds & explore the vibrant culinary scene
+                        of
+                        Singapore like a pro!
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button [routerLink]="['/restaurants']">Search Restaurants</button>
+                    <!-- <button mat-raised-button>Search</button> -->
+                    <!-- <input class="card-input" type="text" required placeholder="Input Keyword Here"> -->
+                </mat-card-actions>
+            </mat-card>
+        </div>
+
+        <div class="home-card">
+            <mat-card class="attractions-card card">
+                <mat-card-header class="attractions-header-image card-header">
+                    <mat-icon mat-card-avatar> beach_access</mat-icon>
+                    <mat-card-title>Attractions</mat-card-title>
+                    <!-- <mat-card-subtitle>nature & technology in harmony</mat-card-subtitle> -->
+                </mat-card-header>
+                <img mat-card-image src="../../assets/images/jewel-fountain.jpg">
+                <mat-card-content>
+                    <p class="card-body">
+                        At a lost of places to go? <br> Embark on a journey of discovery through Singapore's
+                        must-see sights and hidden treasures!
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button [routerLink]="['/attractions']">Search Attractions</button>
+                    <!-- <button mat-raised-button>Search</button> -->
+                    <!-- <input class="card-input" type="text" required placeholder="Input Keyword Here"> -->
+                </mat-card-actions>
+            </mat-card>
+        </div>
+
+        <div class="home-card">
+            <mat-card class="attraction-card card">
+                <mat-card-header class="restaurant-header-image card-header">
+                    <mat-icon mat-card-avatar>favorite</mat-icon>
+                    <mat-card-title>Favourites</mat-card-title>
+                    <!-- <mat-card-subtitle>your very own hotspots</mat-card-subtitle> -->
+                </mat-card-header>
+                <img mat-card-image src="../../assets/images/arab-str.jpg">
+                <mat-card-content>
+                    <p class="card-body">
+                        Never run out of ideas again! <br> Your curated list of the city's best-kept secrets, hidden
+                        gems, and unforgettable experiences.
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button [routerLink]="['/favourites']">View Favourites</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+
+    </div>
+
+    <div class="screen">
+        <div class="screen-image"></div>
+        <div class="screen-overlay"></div>
+        <div class="screen-content">
+
+            <div class="screen-user">
+                <span class="name">DATEGENIE</span>
+                <!-- <a class="link" href="" target="_blank">@JG</a> -->
+            </div>
+
+        </div>
+    </div>
+</div>
