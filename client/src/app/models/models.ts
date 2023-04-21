@@ -1,3 +1,7 @@
+export interface UserSearchResult {
+    resp: string
+}
+
 export interface Restaurant {
 	uuid: string
     name: string
@@ -44,6 +48,17 @@ export interface Review {
     time: string
 }
 
+export class User {
+    constructor(username: string, email: string, password: string) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+    username: string
+    email: string
+    password: string
+}
+
 export class Favourites {
     constructor(restaurants: Restaurant[], attractions: Attraction[]) {
         this.restaurants = restaurants;
@@ -52,4 +67,3 @@ export class Favourites {
     restaurants: Restaurant[] = []
     attractions: Attraction[] = []
 }
-

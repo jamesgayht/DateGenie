@@ -19,7 +19,12 @@ export class LoginComponent implements OnInit {
   createForm(): FormGroup {
     return this.fb.group({
       username: this.fb.control('', [Validators.required]),
+      password: this.fb.control('', [Validators.required]),
     });
+  }
+
+  verifyUser() {
+    
   }
 
 }

@@ -10,9 +10,8 @@ drop table if exists attractions;
 /* use dategenie;  */
 
 create table users (
-    user_id int auto_increment primary key, 
-    username varchar(32) not null, 
-    email varchar(128) not null,
+    username varchar(32) primary key, 
+    email varchar(128) not null UNIQUE,
     password varchar(128) not null
 );
 

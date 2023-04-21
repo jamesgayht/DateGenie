@@ -83,8 +83,10 @@ public class AttractionsController {
                     .body(attractionSaveError);
         }
 
+        String attractionPostCompletion = "{\"posted to favourites\": \"%s\"}".formatted(attraction.getName());
+
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(json.toString());
+                .body(attractionPostCompletion.toString());
     }
 }

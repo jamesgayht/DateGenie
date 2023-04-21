@@ -46,6 +46,7 @@
   
   mat-card-actions {
     gap: 10px;
+    justify-content: space-evenly;
   }
   
   button {

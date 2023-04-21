@@ -3,15 +3,15 @@
     <div class="card-container">
         <div class="home-card">
             <mat-card class="restaurant-card card">
-                <form>
+                <form [formGroup]="form" (ngSubmit)="verifyUser()">
                     <mat-card-header class="restaurant-header-image card-header">
                         <mat-icon mat-card-avatar> login</mat-icon>
-                        <mat-card-title>Login</mat-card-title>
+                        <mat-card-title>Sign In</mat-card-title>
                         <!-- <mat-card-subtitle>global flavors, local flair</mat-card-subtitle> -->
                     </mat-card-header>
                     <mat-card-content>
                         <mat-form-field>
-                            <input matInput placeholder="Username" required>
+                            <input class="login-input" matInput placeholder="Username" required>
                         </mat-form-field>
                         <br>
                         <mat-form-field>
@@ -20,9 +20,7 @@
                     </mat-card-content>
                     <mat-card-actions>
                         <button mat-raised-button type="submit" [routerLink]="['/home']">Login</button>
-                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                        <!-- <button mat-raised-button>Search</button> -->
-                        <!-- <input class="card-input" type="text" required placeholder="Input Keyword Here"> -->
+                        <button mat-raised-button [routerLink]="['/register']">Sign Up</button>
                     </mat-card-actions>
                 </form>
 

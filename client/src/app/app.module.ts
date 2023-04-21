@@ -14,12 +14,14 @@ import { FavouritesComponent } from './components/favourites.component';
 import { RestaurantDetailsComponent } from './components/restaurant-details.component';
 import { AttractionDetailsComponent } from './components/attraction-details.component';
 import { LoginComponent } from './components/login.component';
+import { RegisterComponent } from './components/register.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    RegisterComponent,
     HomeComponent,
     RestaurantsComponent,
     RestaurantDetailsComponent,

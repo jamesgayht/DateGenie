@@ -85,8 +85,10 @@ public class RestaurantController {
                     .body(restaurantSaveError);
         }
 
+        String restaurantPostCompletion = "{\"posted to favourites\": \"%s\"}".formatted(restaurant.getName());
+
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(json.toString());
+                .body(restaurantPostCompletion.toString());
     }
 }

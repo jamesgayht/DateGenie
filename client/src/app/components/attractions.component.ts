@@ -1,11 +1,7 @@
 import {
-  ChangeDetectionStrategy,
   Component,
-  Input,
   OnDestroy,
   OnInit,
-  SimpleChange,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -20,7 +16,6 @@ import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-attractions',
-  changeDetection: ChangeDetectionStrategy.Default,
   templateUrl: './attractions.component.html',
   styleUrls: ['./attractions.component.css'],
 })
