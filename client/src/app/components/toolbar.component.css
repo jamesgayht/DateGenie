@@ -1,0 +1,22 @@
+.toolbar {
+  background-color: transparent;
+  color: var(--primary-text-color);
+  font-family: "Source Code Pro", monospace;
+  font-weight: bolder;
+  top: -200px;
+  z-index: 100;
+  width: 100%;
+}
+
+#logo {
+  cursor: pointer;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.toolbar-components {
+  padding-left: 20px;
+}

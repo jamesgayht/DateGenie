@@ -1,4 +1,6 @@
+<app-toolbar></app-toolbar>
 <div id="empty-wrapper" *ngIf="!attractions.length">
+
     <div class="screen">
         <div class="screen-image"></div>
         <div class="screen-overlay"></div>
@@ -16,18 +18,11 @@
 </div>
 
 <div id=wrapper [hidden]="!attractions.length">
+    <!-- <app-toolbar></app-toolbar> -->
 
     <div class="screen">
         <div class="screen-image"></div>
         <div class="screen-overlay"></div>
-        <div class="screen-content">
-
-            <div class="screen-user">
-                <span class="name">DATEGENIE</span>
-                <!-- <a class="link" href="" target="_blank">@JG</a> -->
-            </div>
-
-        </div>
     </div>
 
     <div class="form">

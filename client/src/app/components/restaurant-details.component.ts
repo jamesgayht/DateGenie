@@ -63,7 +63,7 @@ export class RestaurantDetailsComponent implements OnInit, OnDestroy {
     this.routeSub$ = this.activatedRoute.params.subscribe((params) => {
       this.restaurantName = params['restaurantName'];
       console.info('restaurant name >>> ', this.restaurantName);
-
+      
       this.restaurant = this.restaurantSvc.getRestaurantDetailsBytName(
         this.restaurantName
       );

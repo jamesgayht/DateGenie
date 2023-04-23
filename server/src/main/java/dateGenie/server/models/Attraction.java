@@ -3,6 +3,8 @@ package dateGenie.server.models;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
@@ -19,6 +21,20 @@ public class Attraction {
     private Double longitude;
     private String imageUrl;
     private String pricing;
+
+    public static Attraction createAttractionForFavourites(SqlRowSet rs) {
+        Attraction attraction = new Attraction(); 
+        attraction.setUuid(rs.getString("attraction_uuid"));
+        attraction.setName(rs.getString("attraction_name"));
+        attraction.setType(rs.getString("type"));
+        attraction.setDescription(rs.getString("description"));
+        attraction.setImageUUID(rs.getString("image_uuid"));
+        attraction.setLatitude(rs.getDouble("latitude"));
+        attraction.setLongitude(rs.getDouble("longitude"));
+        attraction.setPricing(rs.getString("pricing"));
+        attraction.setImageUrl(rs.getString("image_url"));
+        return attraction; 
+    }
 
     public static Attraction createAttractionFromClientPayload(JsonObject doc) {
         Attraction attraction = new Attraction(); 
@@ -45,6 +61,15 @@ public class Attraction {
 
         return attraction; 
     }
+
+    // public JsonObject toJsonFavourites() {
+    //     return Json.createObjectBuilder()
+    //             .add("attractionUuid", uuid)
+    //             .add("attractionName", name)
+    //             .add("attractionType", type)
+    //             .add("attractionImageUrl", imageUrl)
+    //             .build();
+    // }
 
     public JsonObject toJson() {
 

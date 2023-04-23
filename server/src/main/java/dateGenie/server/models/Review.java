@@ -1,5 +1,7 @@
 package dateGenie.server.models;
 
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 
@@ -18,6 +20,18 @@ public class Review {
                 .build();
     }
     
+    public static Review createReviewFromSql(SqlRowSet rs) {
+
+        final Review review = new Review();
+
+        review.setAuthorName(rs.getString("author_name"));
+        review.setRating(rs.getDouble("rating"));
+        review.setText(rs.getString("review"));
+        review.setDate(rs.getString("review_date"));
+
+        return review;
+    }
+
     public static Review createReview(JsonObject doc) {
 
         final Review review = new Review();

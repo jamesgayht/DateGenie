@@ -82,7 +82,7 @@ export class RegisterComponent implements OnInit {
           this.snackBar.open(invalidMessage, "Close", config);
         }
         else {
-          const welcomeMessage: string = `Welcome ${user.username}!`;
+          const welcomeMessage: string = `Thanks for registering ${user.username}!`;
           this.snackBar.open(welcomeMessage, "Close", config);
           this.userService.postNewUser(user);
           this.router.navigate(['/']);

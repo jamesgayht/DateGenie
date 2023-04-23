@@ -21,9 +21,13 @@ export class SearchService {
     if (!keyword || keyword === '') keyword = this.randomCuisine;
     if (!offset || offset === 0) offset = 0;
     console.info('keyword >>> ', keyword);
-    const params = new HttpParams().set("keyword", keyword).set('offset', offset);
+    const params = new HttpParams()
+      .set('keyword', keyword)
+      .set('offset', offset);
     return lastValueFrom(
-      this.http.get<RestaurantSearchResults>(`/api/restaurants/${keyword}`, {params: params})
+      this.http.get<RestaurantSearchResults>(`/api/restaurants/${keyword}`, {
+        params: params,
+      })
     );
   }
 
@@ -34,9 +38,13 @@ export class SearchService {
     if (!keyword || keyword === '') keyword = this.randomAttraction;
     if (!offset || offset === 0) offset = 0;
     console.info('keyword >>> ', keyword);
-    const params = new HttpParams().set("keyword", keyword).set('offset', offset);
+    const params = new HttpParams()
+      .set('keyword', keyword)
+      .set('offset', offset);
     return lastValueFrom(
-      this.http.get<AttractionsSearchResults>(`/api/attractions/${keyword}`, {params: params})
+      this.http.get<AttractionsSearchResults>(`/api/attractions/${keyword}`, {
+        params: params,
+      })
     );
   }
 
@@ -48,7 +56,7 @@ export class SearchService {
   getRandomAttraction() {
     return this.randomAttraction;
   }
- 
+
   getRandomRestaurant() {
     return this.randomCuisine;
   }

@@ -1,5 +1,4 @@
 <div id="wrapper">
-
     <div class="card-container">
         <div class="home-card">
             <mat-card class="restaurant-card card">
@@ -11,22 +10,21 @@
                     </mat-card-header>
                     <mat-card-content>
                         <mat-form-field>
-                            <input class="login-input" matInput placeholder="Username" required>
+                            <input class="login-input" formControlName="username" matInput placeholder="Username"
+                                required>
                         </mat-form-field>
                         <br>
                         <mat-form-field>
-                            <input matInput placeholder="Password" type="password" required>
+                            <input matInput formControlName="password" placeholder="Password" type="password" required>
                         </mat-form-field>
                     </mat-card-content>
                     <mat-card-actions>
-                        <button mat-raised-button type="submit" [routerLink]="['/home']">Login</button>
+                        <button mat-raised-button type="submit">Login</button>
                         <button mat-raised-button [routerLink]="['/register']">Sign Up</button>
                     </mat-card-actions>
                 </form>
-
             </mat-card>
         </div>
-
     </div>
 
     <div class="screen">
@@ -36,9 +34,10 @@
 
             <div class="screen-user">
                 <span class="name">DATEGENIE</span>
-                <!-- <a class="link" href="" target="_blank">@JG</a> -->
             </div>
 
         </div>
     </div>
+
+
 </div>

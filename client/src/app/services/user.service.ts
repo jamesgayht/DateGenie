@@ -10,6 +10,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   user!: User;
+  username!: string;
 
   postNewUser(user: User) {
     const body = {
@@ -23,12 +24,27 @@ export class UserService {
 
   checkIfUserExists(
     username: string,
-    email: string
+    email?: string
   ): Promise<UserSearchResult> {
+
+    if(!email) email = "for login, no email";
+
     const params = new HttpParams()
       .set('username', username)
       .set('email', email);
 
     return lastValueFrom(this.http.get<UserSearchResult>('/api/user/search', { params: params }));
+  }
+
+  checkLoginCredentials(
+    username: string,
+    password: string
+  ): Promise<UserSearchResult> {
+
+    const params = new HttpParams()
+      .set('username', username)
+      .set('password', password);
+
+    return lastValueFrom(this.http.get<UserSearchResult>('/api/user/login', { params: params }));
   }
 }

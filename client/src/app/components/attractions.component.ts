@@ -13,6 +13,7 @@ import { Attraction, AttractionsSearchResults } from '../models/models';
 import { AttractionsService } from '../services/attractions.service';
 import { FavouritesService } from '../services/favourites.service';
 import { SearchService } from '../services/search.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-attractions',
@@ -31,11 +32,13 @@ export class AttractionsComponent implements OnInit, OnDestroy {
   attractionsSearchResult!: AttractionsSearchResults;
   totalRecords!: number;
   routeSub$!: Subscription;
+  username: string = this.userService.username; 
 
   constructor(
     private searchService: SearchService,
     private attractionsService: AttractionsService,
     private favouritesService: FavouritesService,
+    private userService: UserService,
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     public snackBar: MatSnackBar
@@ -87,7 +90,7 @@ export class AttractionsComponent implements OnInit, OnDestroy {
 
   addToFavourites(attraction: Attraction) {
     console.info('adding to favourites >>> ', attraction);
-    this.favouritesService.updateFavouriteAttractions(attraction);
+    this.favouritesService.updateFavouriteAttractions(attraction, this.username);
     const favMessage: string = `Added ${attraction.name} to favourites!`;
     let config = new MatSnackBarConfig();
     config.duration = 1000;

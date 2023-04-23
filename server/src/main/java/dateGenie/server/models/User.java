@@ -26,6 +26,11 @@ public class User {
 
         return user; 
     }    
+
+    @Override
+    public String toString() {
+        return "username:%s, email:%s, password:%s".formatted(username, email, password);
+    }
     
     public String getUsername() {
         return username;

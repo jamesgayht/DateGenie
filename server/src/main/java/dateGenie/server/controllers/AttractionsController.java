@@ -60,12 +60,11 @@ public class AttractionsController {
     public ResponseEntity<String> postFavouriteAttractions(@RequestBody String body) {
         JsonReader reader = Json.createReader(new StringReader(body));
         JsonObject json = reader.readObject();
-
-        System.out.println("json for favourite attraction >>> " + json.toString());
-
+        
         Attraction attraction = Attraction.createAttractionFromClientPayload(json);
         JsonArray reviewsJson = json.getJsonArray("reviews");
         List<Review> reviews = new LinkedList<>();
+        
         reviews = reviewsJson.stream()
                 .map(v -> (JsonObject) v)
                 .map(v -> Review.createReview(v))
@@ -75,7 +74,7 @@ public class AttractionsController {
         System.out.println("reviews >>> " + reviews);
 
         try {
-            favouriteService.createFavouriteAttraction(attraction);
+            favouriteService.createFavouriteAttraction(attraction, json.getString("username"));
         } catch (Exception e) {
             String attractionSaveError = "{\"error\": \"%s\"}".formatted(e.getMessage());
 

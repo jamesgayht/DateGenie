@@ -13,6 +13,7 @@ import { Restaurant, RestaurantSearchResults } from '../models/models';
 import { FavouritesService } from '../services/favourites.service';
 import { RestaurantsService } from '../services/restaurants.service';
 import { SearchService } from '../services/search.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-restaurants', 
@@ -35,11 +36,13 @@ export class RestaurantsComponent implements OnInit, OnDestroy {
   restaurantsSearchResult!: RestaurantSearchResults;
   totalRecords!: number;
   routeSub$!: Subscription;
+  username: string = this.userService.username;
 
   constructor(
     private searchService: SearchService,
     private restaurantsService: RestaurantsService,
     private favouritesService: FavouritesService,
+    private userService: UserService,
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     public snackBar: MatSnackBar
@@ -50,6 +53,7 @@ export class RestaurantsComponent implements OnInit, OnDestroy {
     this.restaurants = await this.searchRestaurants();
     console.info('restaurants in restaurants comp >>> ', this.restaurants);
     this.keyword = this.searchService.getRandomRestaurant(); 
+    console.info("username >>>> ", this.username);
   }
 
   searchRestaurants = async () => {
@@ -86,7 +90,7 @@ export class RestaurantsComponent implements OnInit, OnDestroy {
 
   addToFavourites(restaurant: Restaurant) {
     console.info("adding to favourites >>> ", restaurant);
-    this.favouritesService.updateFavouriteRestaurants(restaurant);
+    this.favouritesService.updateFavouriteRestaurants(restaurant, this.username);
     const favMessage: string = `Added ${restaurant.name} to favourites!`;
     let config = new MatSnackBarConfig();
     config.duration = 1000; 

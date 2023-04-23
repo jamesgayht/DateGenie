@@ -3,6 +3,8 @@ package dateGenie.server.models;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
@@ -20,6 +22,21 @@ public class Restaurant {
     private Double longitude;
     private String imageUrl;
     private String pricing; 
+
+    public static Restaurant createRestaurantForFavourites(SqlRowSet rs) {
+        Restaurant restaurant = new Restaurant(); 
+        restaurant.setUuid(rs.getString("restaurant_uuid"));
+        restaurant.setName(rs.getString("restaurant_name"));
+        restaurant.setType(rs.getString("type"));
+        restaurant.setDescription(rs.getString("description"));
+        restaurant.setImageUUID(rs.getString("image_uuid"));
+        restaurant.setCuisine(rs.getString("cuisine"));
+        restaurant.setLatitude(rs.getDouble("latitude"));
+        restaurant.setLongitude(rs.getDouble("longitude"));
+        restaurant.setPricing(rs.getString("pricing"));
+        restaurant.setImageUrl(rs.getString("image_url"));
+        return restaurant; 
+    }
 
     public static Restaurant createRestaurantFromClientPayload(JsonObject doc) {
         Restaurant restaurant = new Restaurant(); 
@@ -47,6 +64,16 @@ public class Restaurant {
 
         return restaurant; 
     }
+
+    // public JsonObject toJsonFavourites() {
+
+    //     return Json.createObjectBuilder()
+    //             .add("restaurantUuid", uuid)
+    //             .add("restaurantName", name)
+    //             .add("restaurantType", type)
+    //             .add("restaurantImageeUrl", imageUrl)
+    //             .build();
+    // }
 
     public JsonObject toJson() {
 

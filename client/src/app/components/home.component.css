@@ -7,6 +7,10 @@
   height: fit-content;
 }
 
+app-toolbar {
+  display: block;
+}
+
 .card-container {
   position: relative;
   z-index: 100;

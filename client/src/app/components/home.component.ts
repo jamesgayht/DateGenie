@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {
   Attraction,
   AttractionsSearchResults,
@@ -18,7 +19,7 @@ export class HomeComponent {
   constructor(
     private searchService: SearchService,
     private restaurantsService: RestaurantsService,
-    private attractionsService: AttractionsService
+    private attractionsService: AttractionsService,
+    private activatedRoute: ActivatedRoute
   ) {}
-
 }

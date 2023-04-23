@@ -15,6 +15,7 @@ import { RestaurantDetailsComponent } from './components/restaurant-details.comp
 import { AttractionDetailsComponent } from './components/attraction-details.component';
 import { LoginComponent } from './components/login.component';
 import { RegisterComponent } from './components/register.component';
+import { ToolbarComponent } from './components/toolbar.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { RegisterComponent } from './components/register.component';
     RestaurantDetailsComponent,
     AttractionsComponent,
     AttractionDetailsComponent,
-    FavouritesComponent
+    FavouritesComponent, 
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,

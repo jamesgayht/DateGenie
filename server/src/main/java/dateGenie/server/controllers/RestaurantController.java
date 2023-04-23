@@ -63,8 +63,6 @@ public class RestaurantController {
         JsonReader reader = Json.createReader(new StringReader(body));
         JsonObject json = reader.readObject();
 
-        System.out.println("json for favourite restaurant >>> " + json.toString());
-
         Restaurant restaurant = Restaurant.createRestaurantFromClientPayload(json);
         JsonArray reviewsJson = json.getJsonArray("reviews");
         List<Review> reviews = new LinkedList<>();
@@ -77,7 +75,7 @@ public class RestaurantController {
         System.out.println("reviews >>> " + reviews);
 
         try {
-            favouriteService.createFavouriteRestaurant(restaurant);
+            favouriteService.createFavouriteRestaurant(restaurant, json.getString("username"));
         } catch (Exception e) {
             String restaurantSaveError = "{\"error\": \"%s\"}".formatted(e.getMessage());
 

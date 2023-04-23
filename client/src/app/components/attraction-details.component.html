@@ -1,21 +1,24 @@
+<app-toolbar></app-toolbar>
 <div id="empty-wrapper" *ngIf="isLoading">
-  <div class="screen">
-      <div class="screen-image"></div>
-      <div class="screen-overlay"></div>
-      <div class="screen-content">
-          <div class="loading-screen">
-              <div class="spinner"></div>
-          </div>
-          <div class="screen-user">
-              <span class="name">DATEGENIE</span>
-              <!-- <a class="link" href="" target="_blank">@JG</a> -->
-          </div>
 
+  <div class="screen">
+  <div class="screen-image"></div>
+    <div class="screen-overlay"></div>
+    <div class="screen-content">
+      <div class="loading-screen">
+        <div class="spinner"></div>
       </div>
+      <div class="screen-user">
+        <span class="name">DATEGENIE</span>
+        <!-- <a class="link" href="" target="_blank">@JG</a> -->
+      </div>
+
+    </div>
   </div>
 </div>
 
 <div id=wrapper *ngIf="!isLoading">
+  <!-- <app-toolbar></app-toolbar> -->
 
   <div>
     <div class="top-section">

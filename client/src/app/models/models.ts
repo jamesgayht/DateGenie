@@ -1,5 +1,6 @@
 export interface UserSearchResult {
     resp: string
+    username?: string
 }
 
 export interface Restaurant {
@@ -67,3 +68,22 @@ export class Favourites {
     restaurants: Restaurant[] = []
     attractions: Attraction[] = []
 }
+
+// export interface FavouritesSearchResult {
+//     restaurants: Restaurant[]
+//     attractions: Attraction[]
+// }
+
+// export interface FavouriteRestaurant {
+//     restaurantUuid: string
+//     restaurantName: string
+//     restaurantType: string
+//     restaurantImageUrl: string
+// }
+
+// export interface FavouriteAttraction {
+//     attractionUuid: string
+//     attractionName: string
+//     attractionType: string
+//     attractionImageUrl: string
+// }

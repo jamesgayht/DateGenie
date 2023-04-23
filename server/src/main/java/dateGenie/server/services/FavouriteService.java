@@ -19,14 +19,14 @@ public class FavouriteService {
     private AttractionsRepo attractionsRepo; 
 
     @Transactional(rollbackFor = FavouriteException.class)
-    public void createFavouriteRestaurant(Restaurant restaurant) {
-        restaurantsRepo.insertFavouriteRestaurant(restaurant);
-        restaurantsRepo.insertFavouriteRestaurantReview(restaurant.getReviews(), restaurant.getUuid());
+    public void createFavouriteRestaurant(Restaurant restaurant, String username) {
+        restaurantsRepo.insertFavouriteRestaurant(restaurant, username);
+        restaurantsRepo.insertFavouriteRestaurantReview(restaurant.getReviews(), restaurant.getUuid(), username);
     }
 
     @Transactional(rollbackFor = FavouriteException.class)
-    public void createFavouriteAttraction(Attraction attraction) {
-        attractionsRepo.insertFavouriteAttraction(attraction);
-        attractionsRepo.insertFavouriteAttractionReview(attraction.getReviews(), attraction.getUuid());
+    public void createFavouriteAttraction(Attraction attraction, String username) {
+        attractionsRepo.insertFavouriteAttraction(attraction, username);
+        attractionsRepo.insertFavouriteAttractionReview(attraction.getReviews(), attraction.getUuid(), username);
     }
 }
