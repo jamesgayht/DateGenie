@@ -117,6 +117,7 @@ font-size: 40px;
 
 mat-card-actions {
   justify-content: space-evenly;
+  gap: 4px;
 }
 
 #delete-icon {

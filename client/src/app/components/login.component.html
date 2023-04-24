@@ -1,25 +1,46 @@
-<div id="wrapper">
+<div id="empty-wrapper" *ngIf="!!isLoading">
+
+    <div class="screen">
+        <div class="screen-image"></div>
+        <div class="screen-overlay"></div>
+        <div class="screen-content">
+            <div class="loading-screen">
+                <div class="spinner"></div>
+            </div>
+            <div class="screen-user">
+                <span class="name">DATEGENIE</span>
+                <!-- <a class="link" href="" target="_blank">@JG</a> -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="wrapper" [hidden]="!!isLoading">
     <div class="card-container">
         <div class="home-card">
-            <mat-card class="restaurant-card card">
+            <mat-card class="login-card card">
+                <img mat-card-image src="../../assets/images/img-01.png">
                 <form [formGroup]="form" (ngSubmit)="verifyUser()">
-                    <mat-card-header class="restaurant-header-image card-header">
-                        <mat-icon mat-card-avatar> login</mat-icon>
-                        <mat-card-title>Sign In</mat-card-title>
-                        <!-- <mat-card-subtitle>global flavors, local flair</mat-card-subtitle> -->
+                    <mat-card-header class="login-header-image card-header">
+                        <!-- <mat-icon mat-card-avatar>rowing</mat-icon> -->
+                        <mat-card-title>Hey There!</mat-card-title>
                     </mat-card-header>
                     <mat-card-content>
                         <mat-form-field>
-                            <input class="login-input" formControlName="username" matInput placeholder="Username"
-                                required>
+                            <span>Username: </span>
+                            <input type="text" class="login-input" formControlName="username" matInput
+                                placeholder="{{forTestingUser}}" required>
                         </mat-form-field>
                         <br>
                         <mat-form-field>
-                            <input matInput formControlName="password" placeholder="Password" type="password" required>
+                            <span>Password: </span>
+                            <input matInput formControlName="password" type="password" placeholder="{{forTestingPass}}"
+                                required>
                         </mat-form-field>
                     </mat-card-content>
                     <mat-card-actions>
-                        <button mat-raised-button type="submit">Login</button>
+                        <button mat-raised-button type="submit" [disabled]="form.invalid">Login</button>
                         <button mat-raised-button [routerLink]="['/register']">Sign Up</button>
                     </mat-card-actions>
                 </form>

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dateGenie.server.models.Favourites;
 import dateGenie.server.models.User;
+import dateGenie.server.services.ChatService;
 import dateGenie.server.services.UserService;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
@@ -30,6 +31,30 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ChatService chatService; 
+
+    @PostMapping(path = "/user/chat")
+    public ResponseEntity<String> chatWithAI(@RequestBody String body) {
+        JsonReader reader = Json.createReader(new StringReader(body));
+        JsonObject json = reader.readObject();
+
+        System.out.println(json);
+        String message = json.getString("message"); 
+        String chatResponse = chatService.postUserInput(message);
+
+        JsonObject resp = Json.createObjectBuilder()
+            .add("resp", chatResponse)
+            .build(); 
+
+        // String resp = "{\"resp\": \"%s\"}".formatted(chatResponse);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(resp.toString());
+    }
+
 
     @PutMapping(path = "/user/attraction/delete")
     public ResponseEntity<String> deleteFromAttraction(@RequestBody String body) {

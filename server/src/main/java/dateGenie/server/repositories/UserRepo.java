@@ -44,7 +44,6 @@ public class UserRepo {
         final SqlRowSet rs = jdbcTemplate.queryForRowSet(SQL_GET_ATTRACTIONS_BY_USERNAME, username);
 
         List<Attraction> attractions = new LinkedList<>();
-        List<Review> attractionsReviews = new LinkedList<>();
 
         if (rs.wasNull()) {
             System.out.println("returning null in userrepo attr");
@@ -53,8 +52,10 @@ public class UserRepo {
 
         while (rs.next()) {
             Attraction attraction = (Attraction.createAttractionForFavourites(rs));
-            final SqlRowSet rsReviews = jdbcTemplate.queryForRowSet(SQL_GET_ATTRACTIONS_REVIEWS_BY_UUID,
-                    attraction.getUuid());
+            List<Review> attractionsReviews = new LinkedList<>();
+
+            final SqlRowSet rsReviews = jdbcTemplate.queryForRowSet(SQL_GET_ATTRACTIONS_REVIEWS_BY_UUID_AND_USERNAME,
+                    attraction.getUuid(), username);
 
             if (rsReviews.wasNull()) {
                 System.out.println("userrepo attr null");
@@ -74,17 +75,17 @@ public class UserRepo {
         final SqlRowSet rs = jdbcTemplate.queryForRowSet(SQL_GET_RESTAURANTS_BY_USERNAME, username);
 
         List<Restaurant> restaurants = new LinkedList<>();
-        List<Review> restaurantsReviews = new LinkedList<>();
-
         if (rs.wasNull()) {
             return Optional.empty();
         }
 
         while (rs.next()) {
             Restaurant restaurant = (Restaurant.createRestaurantForFavourites(rs));
-            final SqlRowSet rsReviews = jdbcTemplate.queryForRowSet(SQL_GET_RESTAURANTS_REVIEWS_BY_UUID,
-                    restaurant.getUuid());
+            List<Review> restaurantsReviews = new LinkedList<>();
 
+            final SqlRowSet rsReviews = jdbcTemplate.queryForRowSet(SQL_GET_RESTAURANTS_REVIEWS_BY_UUID_AND_USERNAME,
+                    restaurant.getUuid(), username);
+                    
             if (rsReviews.wasNull()) {
                 restaurant.setReviews(restaurantsReviews);
             }

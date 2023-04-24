@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
   username!: string;
   password!: string;
   userSearchResult!: UserSearchResult;
+  isLoading: boolean = false; 
+  forTestingUser = "admin";
+  forTestingPass = "asdf1234";
 
   constructor(
     private fb: FormBuilder,
@@ -41,6 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   verifyUser() {
+    this.isLoading = true; 
     this.username = this.form.get('username')?.value;
     this.password = this.form.get('password')?.value;
 
@@ -75,5 +79,6 @@ export class LoginComponent implements OnInit {
     } catch (error) {
       console.info('login error >>> ', error);
     }
+    this.isLoading = false;
   }
 }

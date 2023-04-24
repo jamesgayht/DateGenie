@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Attraction, Favourites, Restaurant } from '../models/models';
+import { Attraction, ChatResults, Favourites, Restaurant } from '../models/models';
 import { AttractionsService } from '../services/attractions.service';
 import { FavouritesService } from '../services/favourites.service';
 import { RestaurantsService } from '../services/restaurants.service';
@@ -19,14 +20,14 @@ export class FavouritesComponent implements OnInit {
   form!: FormGroup;
   routeSub$!: Subscription;
 
-  favourites!: Favourites
-  // favourites!: FavouritesSearchResult;
+  favourites!: Favourites;
+  chatResults!: ChatResults;
 
-  restaurants!: Restaurant[]; 
-  shownRestaurants!: Restaurant[]; 
+  restaurants: Restaurant[] = []; 
+  shownRestaurants: Restaurant[] = []; 
 
-  attractions!: Attraction[]; 
-  shownAttractions!: Attraction[]; 
+  attractions: Attraction[] = []; 
+  shownAttractions: Attraction[] = []; 
 
   username: string = this.userService.username; 
   itemsPerPage = 4; 
@@ -34,6 +35,7 @@ export class FavouritesComponent implements OnInit {
   currentResPage: number = 1; 
   currentAttrIndex: number = 0; 
   currentAttrPage: number = 1; 
+  isLoading: boolean = false; 
   @ViewChild('paginator') paginator!: MatPaginator;
 
   constructor(
@@ -43,7 +45,8 @@ export class FavouritesComponent implements OnInit {
     private attractionsService: AttractionsService,
     private userService: UserService,
     private fb: FormBuilder,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public snackBar: MatSnackBar
   ) {}
 
   async ngOnInit() {
@@ -131,6 +134,22 @@ export class FavouritesComponent implements OnInit {
     this.shownAttractions = this.attractions.slice(this.currentAttrIndex, (this.currentAttrIndex + this.itemsPerPage)); 
     console.info("shown attr >>> ", this.shownAttractions); 
   }
+
+  getSampleItinerary(name: string) {
+    this.isLoading = true; 
+    try {
+      this.favouritesService.getSampleItinerary(name).then((result) => {
+        console.info("sample itinerary results >>> ", result); 
+        this.chatResults = result; 
+        this.snackBar.open(this.chatResults.resp, 'Thanks!');
+      })
+
+    } catch (error) {
+      console.info("error getting itinerary >>> ", error)
+    }
+    this.isLoading = false;
+  }
+
   createForm(): FormGroup {
     return this.fb.group({
       keyword: this.fb.control('', [Validators.required]),

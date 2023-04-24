@@ -69,21 +69,6 @@ export class Favourites {
     attractions: Attraction[] = []
 }
 
-// export interface FavouritesSearchResult {
-//     restaurants: Restaurant[]
-//     attractions: Attraction[]
-// }
-
-// export interface FavouriteRestaurant {
-//     restaurantUuid: string
-//     restaurantName: string
-//     restaurantType: string
-//     restaurantImageUrl: string
-// }
-
-// export interface FavouriteAttraction {
-//     attractionUuid: string
-//     attractionName: string
-//     attractionType: string
-//     attractionImageUrl: string
-// }
+export interface ChatResults {
+    resp: string
+}

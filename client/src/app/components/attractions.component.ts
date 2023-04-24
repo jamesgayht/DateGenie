@@ -88,13 +88,22 @@ export class AttractionsComponent implements OnInit, OnDestroy {
     });
   }
 
-  addToFavourites(attraction: Attraction) {
+  async addToFavourites(attraction: Attraction) {
     console.info('adding to favourites >>> ', attraction);
-    this.favouritesService.updateFavouriteAttractions(attraction, this.username);
-    const favMessage: string = `Added ${attraction.name} to favourites!`;
     let config = new MatSnackBarConfig();
-    config.duration = 1000;
-    this.snackBar.open(favMessage, 'Close', config);
+    config.duration = 3000;
+    try {
+      await this.favouritesService.updateFavouriteAttractions(
+        attraction,
+        this.username
+      );
+      const favMessage: string = `Added ${attraction.name} to favourites!`;
+      this.snackBar.open(favMessage, 'Close', config);
+    } catch (error) {
+      const errorMessage: string = `Failed to add ${attraction.name} to favourites, item may already exist.`;
+      this.snackBar.open(errorMessage, 'Close', config);
+      
+    }
   }
 
   nextPage() {

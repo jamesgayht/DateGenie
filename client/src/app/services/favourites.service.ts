@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import {
   Attraction,
+  ChatResults,
   Favourites,
   Restaurant,
 } from '../models/models';
@@ -88,6 +89,16 @@ export class FavouritesService {
     };
     return lastValueFrom(
       this.http.put(`/api/user/attraction/delete`, body)
+    );
+  }
+
+  getSampleItinerary(name: string): Promise<ChatResults> {
+    const body = {
+      message: `Please recommend a day of activities within proximity of ${name}.`
+    }
+
+    return lastValueFrom(
+      this.http.post<ChatResults>(`/api/user/chat`, body)
     );
   }
 

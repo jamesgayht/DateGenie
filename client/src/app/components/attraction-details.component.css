@@ -1,140 +1,157 @@
 .spinner {
-    border: 6px solid var(--primary-text-color);
-    border-left-color: var(--primary-color);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin: 20px auto;
-  }
-  
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
+  border: 6px solid var(--primary-text-color);
+  border-left-color: var(--primary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
 
-  #wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: var(--primary-text-color);
-  }
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 
-  .top-section {
-    z-index: 100;
+#wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--primary-text-color);
+}
+
+.details-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.top-section {
+  z-index: 100;
+  display: flex;
+  gap: 1.5rem;
+  padding-top: 1rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  
+}
+
+.res-card,
+.gmaps {
+  display: flex;
+}
+
+.form {
     display: flex;
-  }
-  
-  .form {
-      display: flex;
-      align-self: center;
-      padding-top: 1.5vh;
-      font-size: 30px;
-      font-family: "Source Code Pro", monospace;
-      z-index: 100;
-  }
-  
-  .input-header {
-    color: var(--primary-text-color);
-  }
-  
-  .text-input {
-      width: 100%;
-      padding: 5px 20px;
-      box-sizing: border-box;
-      font-size: 20px;
-      font-family: "Source Code Pro", monospace;
-  }
-  
-  #search-button {
-      height: 30px;
-      margin-left: 10px;
-      font-family: "Source Code Pro", monospace;
-  }
-  
-  mat-paginator {
-      margin-top: 3rem;
-      z-index: 100;
-      background-color: var(--primary-text-color);
-      font-family: "Source Code Pro", monospace;
-      box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
-      5px 5px 0px 0px;
-      color: var(--primary-color-dark);
-  }
-  
-  .card-container {
-    position: relative;
+    align-self: center;
+    padding-top: 1.5vh;
+    font-size: 30px;
+    font-family: "Source Code Pro", monospace;
     z-index: 100;
-    padding-top: 3vh;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    flex-basis: 30%;
-    justify-content: center;
-    align-items: stretch !important;
-    gap: 10px 10px;
-  }
-  
-  mat-card {
-    max-width: 300px;
-    min-width: 300px;
-    max-height: 500px;
+}
+
+mat-paginator {
+    margin-top: 3rem;
+    z-index: 100;
     background-color: var(--primary-text-color);
+    font-family: "Source Code Pro", monospace;
+    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
     color: var(--primary-color-dark);
-    /* margin-left: 35px; */
-    /* height: 100%; */
-  }
-  
-  .card-img {
-    background-size: cover;
-    background-position: center;
-    object-fit: cover;
-    max-height: 200px;
-    min-height: 200px;
-  }
-  
-  .card-body {
-    text-align: left;
-    overflow: hidden;
-  }
-  
-  .card-input {
-    margin-top: 0.2vh;
-    margin-left: 0.5vw;
-  }
-  
-  mat-icon.mat-card-avatar {
-    width: 40px;
-    height: 40px;
-    font-size: 40px;
-  }
-  
-  mat-card-actions {
-      justify-content: space-between;
-  }
-  
-  #favourite-icon {
-      color: var(--primary-color);
-  }
-  
-  button {
-    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
-      5px 5px 0px 0px;
-    font-family: "Source Code Pro", monospace;
-    font-size: small;
-  }
-  
-  input {
-    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
-      5px 5px 0px 0px;
-    font-family: "Source Code Pro", monospace;
-  }
-  
-  p,
-  mat-card-title {
-    font-family: "Source Code Pro", monospace;
-  }
-  
-  .screen > .screen-image {
-    background-image: url("../../assets/images/gbtb.jpg");
-  }
+}
+
+.card-container {
+  position: relative;
+  z-index: 100;
+  padding-top: 3vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: 30%;
+  justify-content: center;
+  align-items: stretch !important;
+  gap: 10px 10px;
+}
+
+mat-card {
+  max-width: 300px;
+  min-width: 300px;
+  max-height: 500px;
+  background-color: var(--primary-text-color);
+  color: var(--primary-color-dark);
+  /* margin-left: 35px; */
+  /* height: 100%; */
+}
+
+mat-card-content {
+  flex-grow: 3;
+}
+
+mat-card-actions {
+  justify-content: flex-end;
+  align-items: last baseline;
+}
+
+iframe,
+.card-img {
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+  max-height: 200px;
+  min-height: 200px;
+}
+
+.review-card {
+  max-width: 400px;
+  min-width: 400px;
+}
+
+.card-body {
+  text-align: left;
+  overflow: hidden;
+}
+
+.card-input {
+  margin-top: 0.2vh;
+  margin-left: 0.5vw;
+}
+
+mat-icon.mat-card-avatar {
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+}
+
+#favourite-icon {
+    color: var(--primary-color);
+}
+
+button {
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  font-family: "Source Code Pro", monospace;
+  font-size: small;
+}
+
+input {
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  font-family: "Source Code Pro", monospace;
+}
+
+p,
+mat-card-title {
+  font-family: "Source Code Pro", monospace;
+}
+
+.screen > .screen-image {
+  background-image: url("../../assets/images/lps.jpg");
+}
+
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}

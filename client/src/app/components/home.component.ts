@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   Attraction,
@@ -9,6 +9,7 @@ import {
 import { AttractionsService } from '../services/attractions.service';
 import { RestaurantsService } from '../services/restaurants.service';
 import { SearchService } from '../services/search.service';
+import { ToolbarComponent } from './toolbar.component';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,7 @@ import { SearchService } from '../services/search.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+
   constructor(
     private searchService: SearchService,
     private restaurantsService: RestaurantsService,

@@ -1,11 +1,25 @@
 <mat-toolbar class="toolbar">
     <mat-toolbar-row>
-        <span id="logo" [routerLink]="['/home']">DATEGENIE</span>
+        <span id="logo" [routerLink]="['/home']">
+            <span class="square-symbol">&#9632;</span>DateGenie<span class="square-symbol">&#9632;</span>
+        </span>
         <span class="toolbar-spacer"></span>
         <span class="toolbar-components-container">
-            <a class="toolbar-components" [routerLink]="['/restaurants']">RESTAURANTS</a>
-            <a class="toolbar-components" [routerLink]="['/attractions']">ATTRACTIONS</a>
-            <a class="toolbar-components" [routerLink]="['/favourites']">FAVOURITES</a>
+            <a class="toolbar-components" [routerLink]="['/restaurants']">
+                <span>
+                    <mat-icon mat-card-avatar>restaurant_menu</mat-icon>RES
+                </span>
+            </a>
+            <a class="toolbar-components" [routerLink]="['/attractions']">
+                <span>
+                    <mat-icon mat-card-avatar>beach_access</mat-icon>ATR
+                </span>
+            </a>
+            <a class="toolbar-components" [routerLink]="['/favourites']">
+                <span>
+                    <mat-icon mat-card-avatar>favorite</mat-icon>FAV
+                </span>
+            </a>
         </span>
     </mat-toolbar-row>
 </mat-toolbar>

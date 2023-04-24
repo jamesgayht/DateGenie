@@ -20,8 +20,25 @@
     color: var(--primary-text-color);
   }
 
+  .details-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
   .top-section {
     z-index: 100;
+    display: flex;
+    gap: 1.5rem;
+    padding-top: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    
+  }
+
+  .res-card,
+  .gmaps {
     display: flex;
   }
   
@@ -32,24 +49,6 @@
       font-size: 30px;
       font-family: "Source Code Pro", monospace;
       z-index: 100;
-  }
-  
-  .input-header {
-    color: var(--primary-text-color);
-  }
-  
-  .text-input {
-      width: 100%;
-      padding: 5px 20px;
-      box-sizing: border-box;
-      font-size: 20px;
-      font-family: "Source Code Pro", monospace;
-  }
-  
-  #search-button {
-      height: 30px;
-      margin-left: 10px;
-      font-family: "Source Code Pro", monospace;
   }
   
   mat-paginator {
@@ -84,13 +83,28 @@
     /* margin-left: 35px; */
     /* height: 100%; */
   }
+
+  mat-card-content {
+    flex-grow: 3;
+  }
+
+  mat-card-actions {
+    justify-content: flex-end;
+    align-items: last baseline;
+  }
   
+  iframe,
   .card-img {
     background-size: cover;
     background-position: center;
     object-fit: cover;
     max-height: 200px;
     min-height: 200px;
+  }
+
+  .review-card {
+    max-width: 400px;
+    min-width: 400px;
   }
   
   .card-body {
@@ -107,10 +121,6 @@
     width: 40px;
     height: 40px;
     font-size: 40px;
-  }
-  
-  mat-card-actions {
-      justify-content: space-between;
   }
   
   #favourite-icon {
@@ -137,4 +147,11 @@
   
   .screen > .screen-image {
     background-image: url("../../assets/images/lps.jpg");
+  }
+
+
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
   }

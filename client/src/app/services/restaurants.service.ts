@@ -9,6 +9,9 @@ export class RestaurantsService {
   constructor() { }
 
   restaurants: Restaurant[] = [];
+  // currentPage!: number;
+  // currentIndex!: number; 
+  // keyword!: string;
 
   updateRestaurants(restaurants: Restaurant[]) {
     this.restaurants = restaurants;

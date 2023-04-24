@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-  --primary-color: #faab78;
+  --primary-color: #F55353;
   --primary-color-dark: #354259;
   --primary-text-color: #fefcf3;
   --background-color: #354259;
@@ -97,8 +97,8 @@ a {
   /* background-image: url("../../assets/images/mbs.jpg"); */
   height: 100%;
   width: 100%;
-  position: absolute;
-  z-index: 1;
+  position: fixed;
+  z-index: -1;
   left: 0px;
   top: 0px;
   background-size: 150%;
@@ -133,7 +133,7 @@ a {
 .screen > .screen-content > .screen-user:before,
 .screen > .screen-content > .screen-user:after {
   content: "";
-  position: absolute;
+  position: fixed;
   top: 0px;
   border-radius: 1rem;
 }

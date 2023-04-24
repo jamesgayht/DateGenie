@@ -10,75 +10,98 @@
       </div>
       <div class="screen-user">
         <span class="name">DATEGENIE</span>
-        <!-- <a class="link" href="" target="_blank">@JG</a> -->
       </div>
 
     </div>
   </div>
 </div>
 
-<div id=wrapper *ngIf="!isLoading">
+<div id=wrapper [hidden]="isLoading">
   <!-- <app-toolbar></app-toolbar> -->
 
-  <div>
+  <div class="details-container">
     <div class="top-section">
+      <!---------------------- RES-CARD ------------------------>
+      <div class="res-card">
+        <mat-card class="restaurant-card card">
+          <mat-card-header class="restaurant-header-image card-header">
+            <mat-icon mat-card-avatar>restaurant_menu</mat-icon>
+            <mat-card-title>{{restaurant.type}}</mat-card-title>
+          </mat-card-header>
+          <img class="card-img" *ngIf='restaurant.imageURL !== "No Image Found"' mat-card-image
+            [src]=restaurant.imageURL onError="this.src='../../assets/images/gr.jpg'">
+
+          <img class="card-img" *ngIf='restaurant.imageURL === "No Image Found"' mat-card-image
+            src="../../assets/images/gr.jpg">
+
+          <mat-card-content>
+            <p class="card-body">
+              {{restaurant.name}}
+            </p>
+            <p class="card-body">
+              Pricing: {{restaurant.pricing}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <!-- <button mat-raised-button [routerLink]="['/restaurants/details', res.name]">More Details</button> -->
+            <button class="favourite-button" mat-icon-button matTooltip="Basic" (click)="addToFavourites(restaurant)"
+              aria-label="added to favourites snack-bar">
+              <mat-icon id="favourite-icon">favorite</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <!---------------------- END OF RES-CARD ------------------------>
+
+      <!---------------------- GMAPS ------------------------>
       <div class="gmaps">
-        <iframe width="450" height="250" frameborder="0" style="border:0" referrerpolicy="no-referrer-when-downgrade"
-          [src]="sanitizer.bypassSecurityTrustResourceUrl(this.gmapURL)" allowfullscreen>
-        </iframe>
+        <mat-card class="restaurant-card card">
+          <mat-card-header class="restaurant-header-image card-header">
+            <mat-icon mat-card-avatar>restaurant_menu</mat-icon>
+            <mat-card-title>{{restaurant.cuisine}}</mat-card-title>
+          </mat-card-header>
+          <iframe frameborder="0" style="border:0" referrerpolicy="no-referrer-when-downgrade"
+            [src]="sanitizer.bypassSecurityTrustResourceUrl(this.gmapURL)" allowfullscreen>
+          </iframe>
+          <mat-card-content>
+            <p class="card-body">
+              Description: {{restaurant.description}}
+            </p>
+          </mat-card-content>
+        </mat-card>
       </div>
+      <!---------------------- END OF GMAPS ------------------------>
 
-      <div class="restaurant-details-table">
-        <span>{{restaurant.name}}</span>
-        <br>
-        <span>{{restaurant.type}}</span>
-        <br>
-        <span>{{restaurant.cuisine}}</span>
-        <br>
-        <span>{{restaurant.pricing}}</span>
-        <br>
-        <span>{{restaurant.description}}</span>
-        <br>
-      </div>
     </div>
 
+    <mat-paginator #paginator [length]="reviews.length" [pageSize]="2" [pageSizeOptions]="[2]" (page)="getPageDetails($event)" aria-label="Select page">
+    </mat-paginator>
     <div class="bottom-section">
-      <table class="reviews-table" *ngFor="let review of reviews">
-        <tr>
-          <td>Name:</td>
-          <td>{{review.authorName}}</td>
-        </tr>
 
-        <tr>
-          <td>Rating:</td>
-          <td>{{review.rating}}</td>
-        </tr>
-
-        <tr>
-          <td>Date:</td>
-          <td>{{review.time}}</td>
-        </tr>
-
-        <tr>
-          <td>Text:</td>
-          <td>{{review.text}}</td>
-        </tr>
-
-      </table>
-    </div>
-  </div>
-
-  <div class="screen">
-    <div class="screen-image"></div>
-    <div class="screen-overlay"></div>
-    <div class="screen-content">
-
-      <div class="screen-user">
-        <span class="name">DATEGENIE</span>
-        <!-- <a class="link" href="" target="_blank">@JG</a> -->
+      <div *ngIf="!!restaurant.reviews" class="card-container">
+        <mat-card class="review-card card" *ngFor="let review of shownReviews">
+          <mat-card-header class="restaurant-header-image card-header">
+            <mat-icon mat-card-avatar>person</mat-icon>
+            <mat-card-title>{{review.authorName}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p class="card-body">
+              Rating: {{review.rating}}
+            </p>
+            <p class="card-body">
+              Date: {{review.time}}
+            </p>
+            <p class="card-body">
+              Review: {{review.text}}
+            </p>
+          </mat-card-content>
+        </mat-card>
       </div>
-
     </div>
-  </div>
 
-</div>
+    <div class="screen">
+      <div class="screen-image"></div>
+      <div class="screen-overlay"></div>
+    </div>
+
+  </div>

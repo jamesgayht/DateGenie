@@ -3,20 +3,22 @@
     <div class="card-container">
         <div class="home-card">
             <form [formGroup]="form" (ngSubmit)="registerUser()">
-                <mat-card class="restaurant-card card">
-                    <mat-card-header class="restaurant-header-image card-header">
+                <mat-card class="register-card card">
+                    
+                    <mat-card-header class="register-header-image card-header">
                         <mat-icon mat-card-avatar>person</mat-icon>
                         <mat-card-title>Register</mat-card-title>
                         <!-- <mat-card-subtitle>global flavors, local flair</mat-card-subtitle> -->
                     </mat-card-header>
+                    <!-- <img mat-card-image src="../../assets/images/gr.jpg"> -->
                     <mat-card-content>
                         <mat-form-field>
-                            <input class="login-input" matInput placeholder="Username" required
+                            <input matInput placeholder="Username" required
                                 formControlName="username">
                         </mat-form-field>
                         <br>
                         <mat-form-field>
-                            <input class="login-input" matInput placeholder="Email" required formControlName="email">
+                            <input matInput placeholder="Email" required formControlName="email">
                         </mat-form-field>
                         <br>
                         <mat-form-field>
@@ -30,6 +32,7 @@
                     </mat-card-content>
                     <mat-card-actions>
                         <button mat-raised-button type="submit" [disabled]="form.invalid">Register</button>
+                        <button mat-raised-button type="button" [routerLink]="['/login']" >Back</button>
                     </mat-card-actions>
 
                 </mat-card>

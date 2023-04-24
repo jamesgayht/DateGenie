@@ -34,8 +34,8 @@ public class Queries {
     
     public static String SQL_GET_RESTAURANTS_BY_UUID = "select * from restaurants where restaurant_uuid = ?";
 
-    public static String SQL_GET_RESTAURANTS_REVIEWS_BY_UUID = "select * from restaurant_reviews where restaurant_uuid = ?";
+    public static String SQL_GET_RESTAURANTS_REVIEWS_BY_UUID_AND_USERNAME = "select * from restaurant_reviews where restaurant_uuid = ? AND username = ?";
    
-    public static String SQL_GET_ATTRACTIONS_REVIEWS_BY_UUID = "select * from attraction_reviews where attraction_uuid = ?";
+    public static String SQL_GET_ATTRACTIONS_REVIEWS_BY_UUID_AND_USERNAME = "select * from attraction_reviews where attraction_uuid = ? and username = ?";
 
 }

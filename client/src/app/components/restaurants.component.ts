@@ -88,13 +88,21 @@ export class RestaurantsComponent implements OnInit, OnDestroy {
     });
   }
 
-  addToFavourites(restaurant: Restaurant) {
-    console.info("adding to favourites >>> ", restaurant);
-    this.favouritesService.updateFavouriteRestaurants(restaurant, this.username);
-    const favMessage: string = `Added ${restaurant.name} to favourites!`;
+  async addToFavourites(restaurant: Restaurant) {
+    console.info('adding to favourites >>> ', restaurant);
     let config = new MatSnackBarConfig();
-    config.duration = 1000; 
-    this.snackBar.open(favMessage, "Close", config);
+    config.duration = 3000;
+    try {
+      await this.favouritesService.updateFavouriteRestaurants(
+        restaurant,
+        this.username
+      );
+      const favMessage: string = `Added ${restaurant.name} to favourites!`;
+      this.snackBar.open(favMessage, 'Close', config);
+    } catch (error) {
+      const errorMessage: string = `Failed to add ${restaurant.name} to favourites, item may already exist.`;
+      this.snackBar.open(errorMessage, 'Close', config); 
+    }
   }
 
   nextPage() {

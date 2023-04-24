@@ -20,7 +20,7 @@ app-toolbar {
   flex-wrap: wrap;
   flex-basis: 30%;
   justify-content: center;
-  align-items: stretch !important;
+  align-items: stretch;
   gap: 10px 20px;
 
 }

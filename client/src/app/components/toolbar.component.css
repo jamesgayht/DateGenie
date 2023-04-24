@@ -1,11 +1,14 @@
 .toolbar {
   background-color: transparent;
-  color: var(--primary-text-color);
+  /* color: var(--primary-text-color); */
+  color: var(--primary-color-dark);
   font-family: "Source Code Pro", monospace;
   font-weight: bolder;
-  top: -200px;
-  z-index: 100;
+  z-index: -100;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 #logo {
@@ -19,4 +22,24 @@
 
 .toolbar-components {
   padding-left: 20px;
+  color: var(--primary-color-dark);
+
+}
+
+span {
+ display: flex;
+ align-items: center; 
+ color: var(--primary-text-color);
+}
+
+mat-icon {
+  margin: 0;
+  padding-top: 7px;
+  font-size: 18px;
+}
+
+.square-symbol {
+  font-weight: 300;
+  font-size: 7px;
+  padding: 2.5px;
 }
