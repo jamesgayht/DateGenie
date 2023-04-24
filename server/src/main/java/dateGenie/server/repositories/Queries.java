@@ -38,4 +38,7 @@ public class Queries {
    
     public static String SQL_GET_ATTRACTIONS_REVIEWS_BY_UUID_AND_USERNAME = "select * from attraction_reviews where attraction_uuid = ? and username = ?";
 
+    // public static String SQL_GET_RESTAURANT_IMAGE_BY_UUID = "select * from restaurants where restaurant_uuid = ?";
+    
+    // public static String SQL_GET_ATTRACTION_IMAGE_BY_UUID = "select * from attractions where attraction_uuid = ?";
 }

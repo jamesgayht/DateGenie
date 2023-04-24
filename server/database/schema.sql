@@ -6,21 +6,14 @@ drop table if exists restaurants;
 drop table if exists attractions; 
 drop table if exists users; 
 
-/* create database dategenie;  */
-/* use dategenie;  */
-
 create table users (
     username varchar(32) primary key, 
     email varchar(128) not null UNIQUE,
     password varchar(128) not null
 );
 
-/* insert into customers (name, email, password)
-VALUES 
-("fred", "fredflintstone@bedrock.com", <hashCode>) */
-
 create table restaurants (
-    restaurant_uuid varchar(128) primary key,
+    restaurant_uuid varchar(128) not null,
     restaurant_name varchar(128) not null, 
     type varchar(128) not null,
     description text not null, 
@@ -30,8 +23,9 @@ create table restaurants (
     longitude DOUBLE not null, 
     image_url varchar(256) not null, 
     pricing varchar(128) not null,
-    username varchar(32) not null, 
-    foreign key (username) references users(username)
+    username varchar(32) not null primary key, 
+    foreign key (username) references users(username),
+    primary key (restaurant_uuid, username)
 );
 
 create table restaurant_reviews (
@@ -47,7 +41,7 @@ create table restaurant_reviews (
 );
 
 create table attractions (
-    attraction_uuid varchar(128) primary key,
+    attraction_uuid varchar(128) not null,
     attraction_name varchar(128) not null, 
     type varchar(128) not null, 
     description text not null, 
@@ -57,7 +51,8 @@ create table attractions (
     image_url varchar(256) not null, 
     pricing varchar(128) not null,
     username varchar(32) not null, 
-    foreign key (username) references users(username)
+    foreign key (username) references users(username),
+    primary key (attraction_uuid, username)
 );
 
 create table attraction_reviews (

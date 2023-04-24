@@ -38,7 +38,7 @@
         </form>
     </div>
 
-    <mat-paginator #paginator [length]="totalRecords" [pageSize]="8" [pageSizeOptions]="[8]" (page)="getPageDetails($event)" aria-label="Select page">
+    <mat-paginator #paginator [length]="totalRecords" [pageSize]="4" [pageSizeOptions]="[4]" (page)="getPageDetails($event)" aria-label="Select page">
     </mat-paginator>
 
     <div *ngIf="restaurants.length !== 0" class="card-container">

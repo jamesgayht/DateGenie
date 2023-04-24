@@ -89,8 +89,9 @@ mat-card-content {
 }
 
 mat-card-actions {
-  justify-content: flex-end;
-  align-items: last baseline;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    padding-right: 15px;
 }
 
 iframe,

@@ -4,6 +4,7 @@ import java.io.StringReader;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import dateGenie.server.models.Attraction;
 import dateGenie.server.models.AttractionsResult;
+import dateGenie.server.repositories.AttractionsRepo;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
@@ -22,21 +24,24 @@ import jakarta.json.JsonReader;
 @Service
 public class TIHAttractionsService {
     
-    public static final String URL_RESTAURANT = "https://api.stb.gov.sg/content/attractions/v2/search";
+    public static final String URL_ATTRACTION = "https://api.stb.gov.sg/content/attractions/v2/search";
+    
+    @Autowired
+    private AttractionsRepo attractionsRepo; 
 
     // Inject into the service TIH private key
     @Value("${TIH_API_KEY}")
     private String apiKey;
 
     public AttractionsResult searchAttractions(String keyword, Integer offset) {
-        return searchAttractions(keyword, 8, offset);
+        return searchAttractions(keyword, 4, offset);
     }
 
     public AttractionsResult searchAttractions(String searchValues, Integer limit, Integer offset) {
 
         // https://api.stb.gov.sg/content/attractions/v2/search
         // searchType="keyword" searchValues="???" limit=10 offset=???
-        String url = UriComponentsBuilder.fromUriString(URL_RESTAURANT)
+        String url = UriComponentsBuilder.fromUriString(URL_ATTRACTION)
                 .queryParam("searchType", "keyword")
                 .queryParam("searchValues", searchValues)
                 .queryParam("limit", limit)

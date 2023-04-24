@@ -2,6 +2,7 @@ package dateGenie.server.repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import dateGenie.server.models.Attraction;
@@ -10,6 +11,7 @@ import dateGenie.server.models.Review;
 import static dateGenie.server.repositories.Queries.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class AttractionsRepo {
@@ -44,5 +46,20 @@ public class AttractionsRepo {
         jdbcTemplate.batchUpdate(SQL_INSERT_INTO_ATTRACTION_REVIEWS, data);
 
     }
+
+    // public Optional<String> findAttrImageByUUID(String uuid) {
+
+    //     final SqlRowSet rs = jdbcTemplate.queryForRowSet(SQL_GET_ATTRACTION_IMAGE_BY_UUID, uuid);
+
+    //     String imageUrl = ""; 
+
+    //     if (!rs.next()) {
+    //         return Optional.empty();
+    //     } else {
+    //         imageUrl = rs.getString("image_url");
+    //         System.out.println("image url >>> " + imageUrl);
+    //         return Optional.of(imageUrl);
+    //     }
+    // }
 
 }

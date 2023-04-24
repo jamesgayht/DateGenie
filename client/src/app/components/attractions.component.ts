@@ -24,7 +24,7 @@ export class AttractionsComponent implements OnInit, OnDestroy {
   keyword!: string;
   currentIndex: number = 0;
   currentPage = 1;
-  attractionsPerPage: number = 8;
+  attractionsPerPage: number = 4;
   @ViewChild('paginator') paginator!: MatPaginator;
 
   form!: FormGroup;

@@ -1,9 +1,11 @@
 package dateGenie.server.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import dateGenie.server.models.Restaurant;
@@ -43,5 +45,20 @@ public class RestaurantsRepo {
         jdbcTemplate.batchUpdate(SQL_INSERT_INTO_RESTAURANT_REVIEWS, data);
 
     }
+
+    // public String findResImageByUUID(String uuid) {
+
+    //     final SqlRowSet rs = jdbcTemplate.queryForRowSet(SQL_GET_RESTAURANT_IMAGE_BY_UUID, uuid);
+
+    //     String imageUrl = ""; 
+
+    //     if (!rs.next()) {
+    //         return imageUrl;
+    //     } else {
+    //         imageUrl = rs.getString("image_url");
+    //         System.out.println("image url >>> " + imageUrl);
+    //         return imageUrl;
+    //     }
+    // }
 
 }
