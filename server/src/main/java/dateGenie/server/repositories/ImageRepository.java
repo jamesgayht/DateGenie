@@ -38,7 +38,7 @@ public class ImageRepository {
 			s3.putObject(putReq);
 		} catch (Exception ex) {
 			logger.log(Level.WARNING, "Put S3", ex);
-			return "Upload Error";
+			// return "Upload Error";
 		}
 
 		String imageUrl = "https://%s.%s/%s"
@@ -59,7 +59,7 @@ public class ImageRepository {
 			s3.putObject(putReq);
 		} catch (Exception ex) {
 			logger.log(Level.WARNING, "Put S3", ex);
-			return "Upload Error";
+			// return "Upload Error";
 		}
 
 		String imageUrl = "https://%s.%s/%s"

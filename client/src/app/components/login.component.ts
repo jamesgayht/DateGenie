@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { User, UserSearchResult } from '../models/models';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
   form!: FormGroup;
   username!: string;
   password!: string;
@@ -26,8 +26,13 @@ export class LoginComponent implements OnInit {
     public snackBar: MatSnackBar
   ) {}
 
+  ngAfterViewInit(): void {
+    if(!this.userService.isLoggedIn) this.loggingOut(); 
+  }
+
   ngOnInit(): void {
     this.form = this.createForm();
+    this.userService.isLoggedIn = true;
   }
 
   createForm(): FormGroup {
@@ -80,5 +85,10 @@ export class LoginComponent implements OnInit {
       console.info('login error >>> ', error);
     }
     this.isLoading = false;
+  }
+
+  loggingOut() {
+    localStorage.clear();
+    window.location.reload();
   }
 }

@@ -11,6 +11,7 @@ export class UserService {
 
   user!: User;
   username!: string;
+  isLoggedIn!: boolean; 
 
   postNewUser(user: User) {
     const body = {
