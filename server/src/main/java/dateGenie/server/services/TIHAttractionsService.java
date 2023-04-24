@@ -34,7 +34,7 @@ public class TIHAttractionsService {
     private String apiKey;
 
     public AttractionsResult searchAttractions(String keyword, Integer offset) {
-        return searchAttractions(keyword, 4, offset);
+        return searchAttractions(keyword, 2, offset);
     }
 
     public AttractionsResult searchAttractions(String searchValues, Integer limit, Integer offset) {

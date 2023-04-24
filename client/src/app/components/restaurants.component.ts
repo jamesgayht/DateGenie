@@ -28,7 +28,7 @@ export class RestaurantsComponent implements OnInit, OnDestroy {
   keyword!: string;
   currentIndex: number = 0;
   currentPage = 1;
-  restaurantsPerPage: number = 4;
+  restaurantsPerPage: number = 2;
   @ViewChild('paginator') paginator!: MatPaginator;
   
   form!: FormGroup;
