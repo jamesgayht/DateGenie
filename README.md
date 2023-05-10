@@ -14,6 +14,25 @@ Password and Retype Password must match before form can be submitted.
 Upon successful registration, an email will be sent to the user's email address to simulate verification process. 
 User's data will be added to the database and can be used for login. 
 
+3. Home Page
+Background Image Panning Animation utilising CSS keyframe animations ()
+Navbar and display cards desgined utilising Angular Material 
+
+4. Search Restaurants / Attractions Page
+Implemented keyword randomization upon entering the page to avoid showing empty page
+Search keywords by in placing desired input into textbox 
+Total amount of search results shown in pagination navbar
+Click more details to get reviews, address, etc. 
+Click favourites button to add to favourites 
+
+5. Favourites Page
+Showcases all added favourites stored in MySQL database
+Click more details to get reviews, address, etc. 
+Click Sample Itinerary to get model based AI generated itinerary 
+Click Delete button to remove stored restaurant/attraction
+
+* if no images are found for a restaurant / attraction, will default to golden retriever image
+
 ## Technologies: 
 1. Java SpringBoot for the server 
 2. AngularJS for the client 
